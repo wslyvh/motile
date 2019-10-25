@@ -1,3 +1,8 @@
+/**/node_modules
+/**/coverage
+/**/build
+/**/.scannerwork
+
 # Logs
 logs
 *.log
