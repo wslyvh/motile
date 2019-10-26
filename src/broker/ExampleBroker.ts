@@ -1,17 +1,30 @@
-import { IBroker } from "./IBroker";
+import { IBalance, IBroker, IPosition } from "./IBroker";
 
 export class ExampleBroker implements IBroker {
-  public price(ticker?: string): number {
-    if (ticker === "ETH") {
-      return 180;
-    }
+  private PRICE = 8500;
+  private BALANCE = 0.2;
 
-    return 8585;
+  public price(): number {
+    return this.PRICE;
   }
-  public position(): number {
-    return 800;
+
+  public async position(): Promise<IPosition | null> {
+    // const position: IPosition = {
+    //   Size: 0,
+    //   Value: 0,
+    //   Entry: 0,
+    //   Liquidation: 0
+    // };
+
+    return null;
   }
-  public balance(): number {
-    return 0.21;
+
+  public async balance(): Promise<IBalance> {
+    const balance: IBalance = {
+      USD: this.PRICE * this.BALANCE,
+      BTC: this.BALANCE
+    };
+
+    return balance;
   }
 }

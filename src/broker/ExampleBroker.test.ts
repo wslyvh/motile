@@ -7,7 +7,7 @@ describe("ExampleBroker", () => {
     const response = await broker.price();
 
     expect(response).toBeDefined();
-    expect(response).toBe(8585);
+    expect(response).toBe(8500);
   });
 
   test("Get Position", async () => {
@@ -15,8 +15,7 @@ describe("ExampleBroker", () => {
 
     const response = await broker.position();
 
-    expect(response).toBeDefined();
-    expect(response).toBe(800);
+    expect(response).toBeNull();
   });
 
   test("Get Balance", async () => {
@@ -25,6 +24,7 @@ describe("ExampleBroker", () => {
     const response = await broker.balance();
 
     expect(response).toBeDefined();
-    expect(response).toBe(0.21);
+    expect(response.BTC).toBe(0.2);
+    expect(response.USD).toBe(1700);
   });
 });
