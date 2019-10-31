@@ -11,7 +11,7 @@ export interface IPosition {
 }
 
 export interface IBroker {
-  price(ticker: string): number;
-  position(): IPosition | null;
-  balance(): IBalance;
+  price(): Promise<number>;
+  position(): Promise<IPosition | null>;
+  balance(): Promise<IBalance>;
 }

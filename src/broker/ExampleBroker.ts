@@ -4,11 +4,11 @@ export class ExampleBroker implements IBroker {
   private PRICE = 8500;
   private BALANCE = 0.2;
 
-  public price(): number {
+  public async price(): Promise<number> {
     return this.PRICE;
   }
 
-  public position(): IPosition | null {
+  public async position(): Promise<IPosition | null> {
     // const position: IPosition = {
     //   Size: 0,
     //   Value: 0,
@@ -19,7 +19,7 @@ export class ExampleBroker implements IBroker {
     return null;
   }
 
-  public balance(): IBalance {
+  public async balance(): Promise<IBalance> {
     const balance: IBalance = {
       USD: this.PRICE * this.BALANCE,
       BTC: this.BALANCE
