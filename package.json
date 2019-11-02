@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/wslyvh/motile#readme",
   "dependencies": {
+    "ccxt": "^1.18.1365",
     "dotenv": "^8.2.0",
     "typescript": "^3.6.4",
     "winston": "^3.2.1"
