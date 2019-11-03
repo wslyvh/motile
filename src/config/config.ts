@@ -9,13 +9,13 @@ const AppConfig = {
   LOG_DIR: process.env.LOG_DIR || "logs",
   LOG_LEVEL: process.env.NODE_ENV === "production" ? "error" : "debug",
 
-  BITMEX_ID: process.env.BITMEX_ID,
+  BITMEX_KEY: process.env.BITMEX_KEY,
   BITMEX_SECRET: process.env.BITMEX_SECRET
 };
 
-if (!AppConfig.BITMEX_ID && !AppConfig.BITMEX_SECRET) {
+if (!AppConfig.BITMEX_KEY && !AppConfig.BITMEX_SECRET) {
   // tslint:disable-next-line: no-console
-  console.log("BITMEX_ID or BITMEX_SECRET not correctly set als env variables.");
+  console.log("BITMEX_KEY or BITMEX_SECRET not correctly set als env variables.");
 }
 
 export = AppConfig;
