@@ -14,4 +14,6 @@ export interface IBroker {
   price(): Promise<number>;
   position(): Promise<IPosition | null>;
   balance(): Promise<IBalance>;
+  createBuyOrder(amount: number, price: number): void;
+  createSellOrder(amount: number, price: number): void;
 }

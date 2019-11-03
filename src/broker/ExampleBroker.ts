@@ -27,4 +27,12 @@ export class ExampleBroker implements IBroker {
 
     return balance;
   }
+
+  public async createBuyOrder(amount: number, price: number) {
+    // create trade
+  }
+
+  public async createSellOrder(amount: number, price: number) {
+    // create trade
+  }
 }
