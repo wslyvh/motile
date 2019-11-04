@@ -5,7 +5,6 @@ export interface IBalance {
 
 export interface IPosition {
   Size: number;
-  Value: number;
   Entry: number;
   Liquidation: number;
 }

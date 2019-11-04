@@ -11,7 +11,6 @@ export class ExampleBroker implements IBroker {
   public async position(): Promise<IPosition | null> {
     // const position: IPosition = {
     //   Size: 0,
-    //   Value: 0,
     //   Entry: 0,
     //   Liquidation: 0
     // };
