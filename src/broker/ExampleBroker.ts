@@ -28,6 +28,10 @@ export class ExampleBroker implements IBroker {
     return balance;
   }
 
+  public async hasOpenOrders(): Promise<boolean> {
+    return true;
+  }
+
   public async createBuyOrder(amount: number, price: number) {
     // create trade
   }
