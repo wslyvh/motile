@@ -3,6 +3,7 @@
 /**/build
 /**/.scannerwork
 /**/.serverless
+/**/.webpack
 
 # Logs
 logs

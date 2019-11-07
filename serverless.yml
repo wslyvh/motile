@@ -23,3 +23,5 @@ provider:
 functions:
   scaledProtected:
     handler: handler.scaledProtected
+    events:
+      - schedule: rate(60 minutes)
