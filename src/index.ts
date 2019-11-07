@@ -1,4 +1,8 @@
-import { SampleStrategy } from "./strategy/SampleStrategy";
+import { Sample } from "./strategy/Sample";
+import { ScaledOrders } from "./strategy/ScaledOrders";
 
-const simple = new SampleStrategy();
-simple.Run();
+const sample = new Sample();
+sample.Run();
+
+const scaled = new ScaledOrders();
+scaled.Run();
