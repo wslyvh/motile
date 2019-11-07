@@ -10,7 +10,7 @@ export class ScaledOrders implements IStrategy {
     const price = await broker.price();
     const orderSize = 25;
     const orderAmount = 3;
-    const spread = price * 0.002;
+    const spread = price * 0.001;
 
     logger.info("Creating SELL orders");
     for (let i = 1; i < orderAmount + 1; i++) {
