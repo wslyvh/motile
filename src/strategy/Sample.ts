@@ -3,7 +3,7 @@ import logger from "../utils/Logger";
 import { IStrategy } from "./IStrategy";
 
 export class Sample implements IStrategy {
-  public async Run(): Promise<void> {
+  public async Run(): Promise<boolean> {
     logger.info("Running Sample strategy..");
 
     const broker = new BitmexBroker();
@@ -15,5 +15,6 @@ export class Sample implements IStrategy {
     await broker.createBuyOrder(orderSize, price - spread);
 
     logger.info("All done.");
+    return true;
   }
 }

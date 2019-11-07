@@ -3,7 +3,7 @@ import logger from "../utils/Logger";
 import { IStrategy } from "./IStrategy";
 
 export class ScaledOrders implements IStrategy {
-  public async Run(): Promise<void> {
+  public async Run(): Promise<boolean> {
     logger.info("Running ScaledOrders strategy..");
 
     const broker = new BitmexBroker();
@@ -25,5 +25,6 @@ export class ScaledOrders implements IStrategy {
     }
 
     logger.info("All done.");
+    return true;
   }
 }

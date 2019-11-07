@@ -1,3 +1,3 @@
 export interface IStrategy {
-  Run(): void;
+  Run(): Promise<boolean>;
 }
