@@ -1,0 +1,25 @@
+service:
+  name: ts-motile-runner
+
+app: motile
+org: wslyvh
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: eu-west-1
+  environment:
+    BITMEX_KEY: ${param:BITMEX_KEY}
+    BITMEX_SECRET: ${param:BITMEX_SECRET}
+
+functions:
+  scaledProtected:
+    handler: handler.scaledProtected

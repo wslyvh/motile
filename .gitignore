@@ -2,6 +2,7 @@
 /**/coverage
 /**/build
 /**/.scannerwork
+/**/.serverless
 
 # Logs
 logs
