@@ -6,4 +6,5 @@ export class Constants {
   public static readonly DEFAULT_PERCENTAGE_AT_RISK = 10;
 
   public static readonly DEFAULT_ORDER_AMOUNT = 5;
+  public static readonly DEFAULT_OPEN_ORDERS = 10;
 }

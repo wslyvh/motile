@@ -14,7 +14,7 @@ export class SingleOrder extends Strategy {
 
     this.broker = new BitmexBroker();
     this.Conditions.push(new PercentagePositionSize(Constants.DEFAULT_PERCENTAGE_AT_RISK, this.broker));
-    this.Conditions.push(new OpenOrdersAmount(Constants.DEFAULT_ORDER_AMOUNT, this.broker));
+    this.Conditions.push(new OpenOrdersAmount(Constants.DEFAULT_OPEN_ORDERS, this.broker));
   }
 
   protected async Execute(): Promise<boolean> {
