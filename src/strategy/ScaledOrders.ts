@@ -6,6 +6,7 @@ import logger from "../utils/Logger";
 import { Strategy } from "./Strategy";
 
 export class ScaledOrders extends Strategy {
+  private RISK_LEVEL = 0.01;
   private broker: IBroker;
 
   public constructor() {
@@ -20,7 +21,8 @@ export class ScaledOrders extends Strategy {
     logger.info("ScaledOrders Execute..");
 
     const price = await this.broker.price();
-    const orderSize = 25;
+    const balance = await this.broker.balance();
+    const orderSize = Math.round(balance.USD * this.RISK_LEVEL);
     const orderAmount = 3;
     const spread = price * 0.001;
 

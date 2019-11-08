@@ -75,11 +75,8 @@ export class BitmexBroker implements IBroker {
   }
 
   public async createSellOrder(amount: number, price: number) {
-    const ramount = Math.round(amount);
-    const rprice = Math.round(price);
-
     if (this.executeMode) {
-      const result = await this.client.createLimitSellOrder("BTC/USD", ramount, rprice);
+      const result = await this.client.createLimitSellOrder("BTC/USD", Math.round(amount), Math.round(price));
     }
   }
 }
