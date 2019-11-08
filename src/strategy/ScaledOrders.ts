@@ -2,11 +2,11 @@ import { BitmexBroker } from "../broker/BitmexBroker";
 import { IBroker } from "../broker/IBroker";
 import { MaxPositionSize } from "../conditions/MaxPositionSize";
 import { OpenOrdersAmount } from "../conditions/OpenOrdersAmount";
+import { Constants } from "../config/constants";
 import logger from "../utils/Logger";
 import { Strategy } from "./Strategy";
 
 export class ScaledOrders extends Strategy {
-  private RISK_LEVEL = 0.01;
   private broker: IBroker;
 
   public constructor() {
@@ -14,7 +14,7 @@ export class ScaledOrders extends Strategy {
 
     this.broker = new BitmexBroker();
     this.Conditions.push(new MaxPositionSize(250, this.broker));
-    this.Conditions.push(new OpenOrdersAmount(5, this.broker));
+    this.Conditions.push(new OpenOrdersAmount(Constants.DEFAULT_ORDER_AMOUNT, this.broker));
   }
 
   protected async Execute(): Promise<boolean> {
@@ -22,17 +22,16 @@ export class ScaledOrders extends Strategy {
 
     const price = await this.broker.price();
     const balance = await this.broker.balance();
-    const orderSize = Math.round(balance.USD * this.RISK_LEVEL);
-    const orderAmount = 3;
-    const spread = price * 0.001;
+    const orderSize = Math.round(balance.USD * Constants.DEFAULT_RISK_LEVEL);
+    const spread = price * Constants.DEFAULT_SPREAD;
 
     logger.info("Creating new trades..");
-    for (let i = 1; i < orderAmount + 1; i++) {
+    for (let i = 1; i < Constants.DEFAULT_ORDER_AMOUNT + 1; i++) {
       logger.info("#" + i, "SELL", orderSize, price + spread * i);
       await this.broker.createSellOrder(orderSize, price + spread * i);
     }
 
-    for (let i = 1; i < orderAmount + 1; i++) {
+    for (let i = 1; i < Constants.DEFAULT_ORDER_AMOUNT + 1; i++) {
       logger.info("#" + i, "BUY", orderSize, price - spread * i);
       await this.broker.createBuyOrder(orderSize, price - spread * i);
     }

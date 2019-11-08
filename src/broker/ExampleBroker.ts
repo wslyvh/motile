@@ -27,6 +27,10 @@ export class ExampleBroker implements IBroker {
     return balance;
   }
 
+  public async openOrdersCount(): Promise<number> {
+    return 1;
+  }
+
   public async hasOpenOrders(): Promise<boolean> {
     return true;
   }
