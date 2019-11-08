@@ -2,6 +2,7 @@ import { BitmexBroker } from "../broker/BitmexBroker";
 import { IBroker } from "../broker/IBroker";
 import { MaxPositionSize } from "../conditions/MaxPositionSize";
 import { OpenOrdersAmount } from "../conditions/OpenOrdersAmount";
+import { PercentagePositionSize } from "../conditions/PercentagePositionSize";
 import logger from "../utils/Logger";
 import { Strategy } from "./Strategy";
 
@@ -13,7 +14,7 @@ export class SingleOrder extends Strategy {
     super();
 
     this.broker = new BitmexBroker();
-    this.Conditions.push(new MaxPositionSize(250, this.broker));
+    this.Conditions.push(new PercentagePositionSize(10, this.broker));
     this.Conditions.push(new OpenOrdersAmount(5, this.broker));
   }
 
