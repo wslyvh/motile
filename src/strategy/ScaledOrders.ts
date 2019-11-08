@@ -1,8 +1,11 @@
 import { BitmexBroker } from "../broker/BitmexBroker";
+import { ICondition } from "../conditions/ICondition";
 import logger from "../utils/Logger";
 import { IStrategy } from "./IStrategy";
 
 export class ScaledOrders implements IStrategy {
+  public Conditions: ICondition[] = [];
+
   public async Run(): Promise<boolean> {
     logger.info("Running ScaledOrders strategy..");
 

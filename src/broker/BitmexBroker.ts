@@ -62,6 +62,12 @@ export class BitmexBroker implements IBroker {
     return orders.length && orders.length > 0;
   }
 
+  public async openOrdersCount(): Promise<number> {
+    const orders = await this.client.fetchOpenOrders();
+
+    return orders.length;
+  }
+
   public async createBuyOrder(amount: number, price: number) {
     if (this.executeMode) {
       const result = await this.client.createLimitBuyOrder("BTC/USD", Math.round(amount), Math.round(price));

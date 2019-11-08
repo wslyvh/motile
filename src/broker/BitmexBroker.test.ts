@@ -15,12 +15,7 @@ describe("ExampleBroker", () => {
 
     const response = await broker.position();
 
-    if (response) {
-      expect(response).toBeDefined();
-      expect(response.Size).toBeGreaterThan(1);
-    } else {
-      expect(response).toBeNull();
-    }
+    expect(response).toBeDefined();
   });
 
   test("Get Balance", async () => {
