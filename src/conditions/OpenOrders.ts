@@ -6,7 +6,7 @@ export class OpenOrders implements ICondition {
   public async ShouldExecute(): Promise<boolean> {
     const broker = new BitmexBroker();
     if (await broker.hasOpenOrders()) {
-      logger.warn("There are still open orders. Not creating new ones.");
+      logger.warn("There are still open orders. Stop execution.");
       return false;
     }
 

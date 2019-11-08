@@ -1,4 +1,5 @@
 import { BitmexBroker } from "../broker/BitmexBroker";
+import { MaxPositionSize } from "../conditions/MaxPositionSize";
 import { OpenOrdersAmount } from "../conditions/OpenOrdersAmount";
 import logger from "../utils/Logger";
 import { Strategy } from "./Strategy";
@@ -7,7 +8,8 @@ export class SingleOrder extends Strategy {
   public constructor() {
     super();
 
-    this.Conditions.push(new OpenOrdersAmount());
+    this.Conditions.push(new MaxPositionSize(250));
+    this.Conditions.push(new OpenOrdersAmount(5));
   }
 
   protected async Execute(): Promise<boolean> {
