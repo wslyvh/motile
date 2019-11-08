@@ -1,16 +1,16 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
 import "source-map-support/register";
-import { ScaledProtected } from "./src/strategy/ScaledProtected";
+import { SingleOrder } from "./src/strategy/SingleOrder";
 
-export const scaledProtected: APIGatewayProxyHandler = async (event, context) => {
-  const strategy = new ScaledProtected();
-  const succes = await strategy.Run();
+export const defaultFunction: APIGatewayProxyHandler = async (event, context) => {
+  const strategy = new SingleOrder();
+  const success = await strategy.Run();
 
   return {
-    statusCode: 200,
+    statusCode: success ? 200 : 204,
     body: JSON.stringify(
       {
-        message: succes ? "Success" : "No"
+        message: success ? "Success" : "No trades created."
       },
       null,
       2

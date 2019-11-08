@@ -21,7 +21,7 @@ provider:
     BITMEX_SECRET: ${param:BITMEX_SECRET}
 
 functions:
-  scaledProtected:
-    handler: handler.scaledProtected
+  defaultFunction:
+    handler: handler.defaultFunction
     events:
-      - schedule: rate(60 minutes)
+      - schedule: rate(15 minutes)

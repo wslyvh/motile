@@ -1,12 +1,12 @@
-import { Sample } from "./strategy/Sample";
 import { ScaledOrders } from "./strategy/ScaledOrders";
-import { ScaledProtected } from "./strategy/ScaledProtected";
+import { SingleOrder } from "./strategy/SingleOrder";
+import { Strategy } from "./strategy/Strategy";
 
-// const sample = new Sample();
-// sample.Run();
+// const strategy = new Strategy();
+// strategy.Run();
+
+const single = new SingleOrder();
+single.Run();
 
 // const scaled = new ScaledOrders();
 // scaled.Run();
-
-const scaledProtected = new ScaledProtected();
-scaledProtected.Run();
