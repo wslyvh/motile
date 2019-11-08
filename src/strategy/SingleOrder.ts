@@ -1,28 +1,31 @@
 import { BitmexBroker } from "../broker/BitmexBroker";
+import { IBroker } from "../broker/IBroker";
 import { MaxPositionSize } from "../conditions/MaxPositionSize";
 import { OpenOrdersAmount } from "../conditions/OpenOrdersAmount";
 import logger from "../utils/Logger";
 import { Strategy } from "./Strategy";
 
 export class SingleOrder extends Strategy {
+  private broker: IBroker;
+
   public constructor() {
     super();
 
-    this.Conditions.push(new MaxPositionSize(250));
-    this.Conditions.push(new OpenOrdersAmount(5));
+    this.broker = new BitmexBroker();
+    this.Conditions.push(new MaxPositionSize(250, this.broker));
+    this.Conditions.push(new OpenOrdersAmount(5, this.broker));
   }
 
   protected async Execute(): Promise<boolean> {
     logger.info("SingleOrder Execute..");
 
-    const broker = new BitmexBroker();
-    const price = await broker.price();
+    const price = await this.broker.price();
     const orderSize = 25;
     const spread = price * 0.001;
 
     logger.info("Creating new trades..");
-    await broker.createSellOrder(orderSize, price + spread);
-    await broker.createBuyOrder(orderSize, price - spread);
+    await this.broker.createSellOrder(orderSize, price + spread);
+    await this.broker.createBuyOrder(orderSize, price - spread);
 
     logger.info("All done.");
     return true;

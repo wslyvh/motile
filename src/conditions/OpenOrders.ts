@@ -1,11 +1,16 @@
-import { BitmexBroker } from "../broker/BitmexBroker";
+import { IBroker } from "../broker/IBroker";
 import logger from "../utils/Logger";
 import { ICondition } from "./ICondition";
 
 export class OpenOrders implements ICondition {
+  private broker: IBroker;
+
+  constructor(broker: IBroker) {
+    this.broker = broker;
+  }
+
   public async ShouldExecute(): Promise<boolean> {
-    const broker = new BitmexBroker();
-    if (await broker.hasOpenOrders()) {
+    if (await this.broker.hasOpenOrders()) {
       logger.warn("There are still open orders. Stop execution.");
       return false;
     }

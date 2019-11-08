@@ -1,18 +1,18 @@
-import { BitmexBroker } from "../broker/BitmexBroker";
+import { IBroker } from "../broker/IBroker";
 import logger from "../utils/Logger";
 import { ICondition } from "./ICondition";
 
 export class MaxPositionSize implements ICondition {
   private MAX_SIZE: number;
+  private broker: IBroker;
 
-  constructor(value: number) {
+  constructor(value: number, broker: IBroker) {
     this.MAX_SIZE = value;
+    this.broker = broker;
   }
 
   public async ShouldExecute(): Promise<boolean> {
-    const broker = new BitmexBroker();
-    const balance = await broker.balance();
-    const position = await broker.position();
+    const position = await this.broker.position();
 
     if (position && (position.Size <= -this.MAX_SIZE || position.Size >= this.MAX_SIZE)) {
       logger.warn("Position size is " + position.Size + ". Max allowed: " + this.MAX_SIZE + ". Stop execution.");
