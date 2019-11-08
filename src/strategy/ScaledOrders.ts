@@ -1,7 +1,6 @@
 import { BitmexBroker } from "../broker/BitmexBroker";
 import { IBroker } from "../broker/IBroker";
-import { MaxPositionSize } from "../conditions/MaxPositionSize";
-import { OpenOrdersAmount } from "../conditions/OpenOrdersAmount";
+import { MaxPositionSize, OpenOrdersAmount } from "../conditions";
 import { Constants } from "../config/constants";
 import logger from "../utils/Logger";
 import { Strategy } from "./Strategy";
