@@ -33,5 +33,4 @@ if (AppConfig.DEFAULT_PERCENTAGE_AT_RISK >= 100) {
   console.log("WARNING: Entire total balance is at risk. ");
 }
 
-console.log(AppConfig);
 export = AppConfig;
