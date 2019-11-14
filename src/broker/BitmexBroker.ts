@@ -1,6 +1,5 @@
 import ccxt from "ccxt";
 import AppConfig = require("../config/config");
-import { Constants } from "../config/constants";
 import { IBalance, IBroker, IPosition } from "./IBroker";
 
 export class BitmexBroker implements IBroker {
@@ -69,13 +68,13 @@ export class BitmexBroker implements IBroker {
   }
 
   public async createBuyOrder(amount: number, price: number) {
-    if (Constants.EXECUTE_MODE) {
+    if (AppConfig.EXECUTE_MODE) {
       const result = await this.client.createLimitBuyOrder("BTC/USD", Math.round(amount), Math.round(price));
     }
   }
 
   public async createSellOrder(amount: number, price: number) {
-    if (Constants.EXECUTE_MODE) {
+    if (AppConfig.EXECUTE_MODE) {
       const result = await this.client.createLimitSellOrder("BTC/USD", Math.round(amount), Math.round(price));
     }
   }
