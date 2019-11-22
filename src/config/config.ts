@@ -14,13 +14,14 @@ const AppConfig = {
 
   EXECUTE_MODE: Boolean(process.env.EXECUTE_MODE) || true,
 
-  DEFAULT_PERCENTAGE_AT_RISK: Number(process.env.DEFAULT_PERCENTAGE_AT_RISK) || 20, // Percentage of total balance / at Stake
+  DEFAULT_PERCENTAGE_AT_RISK: Number(process.env.DEFAULT_PERCENTAGE_AT_RISK) || 25, // Percentage of total balance / at Stake
   DEFAULT_RISK_LEVEL: Number(process.env.DEFAULT_RISK_LEVEL) || 0.015, // Percentage of total balance / per orderSize
+  DEFAULT_MIN_ORDERSIZE: Number(process.env.DEFAULT_MIN_ORDERSIZE) || 25, // Min. order size
   DEFAULT_SPREAD: Number(process.env.DEFAULT_SPREAD) || 0.001, // Percentage from current price
   DEFAULT_RANGE: Number(process.env.DEFAULT_RANGE) || 0.0025, // Percentage from current price
 
   DEFAULT_ORDER_AMOUNT: Number(process.env.DEFAULT_ORDER_AMOUNT) || 5,
-  DEFAULT_OPEN_ORDERS: Number(process.env.DEFAULT_OPEN_ORDERS) || 20
+  DEFAULT_OPEN_ORDERS: Number(process.env.DEFAULT_OPEN_ORDERS) || 25
 };
 
 if (!AppConfig.BITMEX_KEY && !AppConfig.BITMEX_SECRET) {
