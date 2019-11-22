@@ -24,4 +24,4 @@ functions:
   defaultFunction:
     handler: handler.defaultFunction
     events:
-      - schedule: rate(15 minutes)
+      - schedule: cron(0/15 * * * ? *)
