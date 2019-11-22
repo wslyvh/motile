@@ -9,10 +9,10 @@ import { Strategy } from "./Strategy";
 export class ScaledOrders extends Strategy {
   private broker: IBroker;
 
-  public constructor() {
+  public constructor(broker: IBroker = new BitmexBroker()) {
     super();
 
-    this.broker = new BitmexBroker();
+    this.broker = broker;
     this.Conditions.push(new MaxPositionSize(250, this.broker));
     this.Conditions.push(new OpenOrdersAmount(AppConfig.DEFAULT_ORDER_AMOUNT, this.broker));
   }
