@@ -18,6 +18,9 @@ export class UpdatePositionClose implements IAction {
       return false;
     }
 
+    // Cancel Open orders
+    await this.broker.cancelOpenOrders();
+
     const price = Math.abs(position.Entry);
     const orderSize = Math.abs(position.Size);
     const spread = position.Entry * AppConfig.DEFAULT_SPREAD;

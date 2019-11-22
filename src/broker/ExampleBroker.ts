@@ -35,6 +35,10 @@ export class ExampleBroker implements IBroker {
     return true;
   }
 
+  public async cancelOpenOrders(): Promise<void> {
+    // cancel orders
+  }
+
   public async createBuyOrder(amount: number, price: number) {
     // create trade
   }

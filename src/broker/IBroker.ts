@@ -15,6 +15,7 @@ export interface IBroker {
   balance(): Promise<IBalance>;
   hasOpenOrders(): Promise<boolean>;
   openOrdersCount(): Promise<number>;
+  cancelOpenOrders(): Promise<void>;
   createBuyOrder(amount: number, price: number): Promise<void>;
   createSellOrder(amount: number, price: number): Promise<void>;
 }
