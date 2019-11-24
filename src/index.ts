@@ -1,4 +1,6 @@
-import { SingleOrder } from "./strategy/SingleOrder";
+import AppConfig = require("./config/config");
+import { RunMultipleConfigs } from "./multi";
 
-const single = new SingleOrder();
-single.Run();
+// tslint:disable-next-line: no-console
+console.log("Running...", AppConfig.EXECUTE_MODE);
+RunMultipleConfigs(2);

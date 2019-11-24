@@ -1,16 +1,15 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
 import "source-map-support/register";
-import { SingleOrder } from "./src/strategy/SingleOrder";
+import { RunMultipleConfigs } from "./src/multi";
 
 export const defaultFunction: APIGatewayProxyHandler = async (event, context) => {
-  const strategy = new SingleOrder();
-  const success = await strategy.Run();
+  const r = await RunMultipleConfigs(2);
 
   return {
-    statusCode: success ? 200 : 204,
+    statusCode: 200,
     body: JSON.stringify(
       {
-        message: success ? "Success" : "No trades created."
+        message: "Ok"
       },
       null,
       2

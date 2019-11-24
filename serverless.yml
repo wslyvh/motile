@@ -17,11 +17,13 @@ provider:
   runtime: nodejs10.x
   region: eu-west-1
   environment:
-    BITMEX_KEY: ${param:BITMEX_KEY}
-    BITMEX_SECRET: ${param:BITMEX_SECRET}
+    BITMEX_KEY_0: ${param:BITMEX_KEY_0}
+    BITMEX_SECRET_0: ${param:BITMEX_SECRET_0}
+    BITMEX_KEY_1: ${param:BITMEX_KEY_1}
+    BITMEX_SECRET_1: ${param:BITMEX_SECRET_1}
 
 functions:
   defaultFunction:
     handler: handler.defaultFunction
     events:
-      - schedule: cron(0/15 * * * ? *)
+      - schedule: cron(0/10 * * * ? *)
