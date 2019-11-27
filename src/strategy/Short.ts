@@ -6,7 +6,7 @@ import { PercentagePositionSize, PositionRange } from "../conditions";
 import AppConfig from "../config/config";
 import { Strategy } from "./Strategy";
 
-export class Long extends Strategy {
+export class Short extends Strategy {
   private broker: IBroker;
 
   public constructor(broker: IBroker = new BitmexBroker()) {
