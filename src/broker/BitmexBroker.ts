@@ -5,7 +5,7 @@ import { IBalance, IBroker, IPosition } from "./IBroker";
 export class BitmexBroker implements IBroker {
   private client: any;
 
-  public constructor(key: string = AppConfig.BITMEX_KEY, secret: string = AppConfig.BITMEX_SECRET) {
+  public constructor(key: string, secret: string) {
     this.client = new ccxt.bitmex({
       apiKey: key,
       secret

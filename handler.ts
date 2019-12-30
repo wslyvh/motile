@@ -1,9 +1,10 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
 import "source-map-support/register";
-import { RunMultipleConfigs } from "./src/multi";
+import { RunBots, RunMultipleConfigs } from "./src/multi";
 
 export const defaultFunction: APIGatewayProxyHandler = async (event, context) => {
-  const r = await RunMultipleConfigs(2);
+  // const resultMulti = await RunMultipleConfigs(2);
+  const resultBots = await RunBots();
 
   return {
     statusCode: 200,

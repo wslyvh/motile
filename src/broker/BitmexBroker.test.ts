@@ -1,8 +1,13 @@
+import * as dotenv from "dotenv";
 import { BitmexBroker } from "./BitmexBroker";
+
+dotenv.config();
+const key = process.env.BOT_KEY_0 || "";
+const secret = process.env.BOT_SECRET_0 || "";
 
 describe("ExampleBroker", () => {
   test("Get Price", async () => {
-    const broker = new BitmexBroker();
+    const broker = new BitmexBroker(key, secret);
 
     const response = await broker.price();
 
@@ -11,7 +16,7 @@ describe("ExampleBroker", () => {
   });
 
   test("Get Position", async () => {
-    const broker = new BitmexBroker();
+    const broker = new BitmexBroker(key, secret);
 
     const response = await broker.position();
 
@@ -19,7 +24,7 @@ describe("ExampleBroker", () => {
   });
 
   test("Get Balance", async () => {
-    const broker = new BitmexBroker();
+    const broker = new BitmexBroker(key, secret);
 
     const response = await broker.balance();
 

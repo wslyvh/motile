@@ -1,3 +1,4 @@
+import { BotRunner } from "./bots";
 import { BitmexBroker } from "./broker/BitmexBroker";
 import { Long } from "./strategy/Long";
 import { SingleOrder } from "./strategy/SingleOrder";
@@ -5,8 +6,8 @@ import logger = require("./utils/Logger");
 
 export async function RunMultipleConfigs(configs: number = 2) {
   for (let i = 0; i < configs; i++) {
-    const key = process.env["BITMEX_KEY_" + i];
-    const secret = process.env["BITMEX_SECRET_" + i];
+    const key = process.env["BOT_KEY_" + i];
+    const secret = process.env["BOT_SECRET_" + i];
 
     if (!key || !secret) {
       // tslint:disable-next-line: no-console
@@ -26,4 +27,9 @@ export async function RunMultipleConfigs(configs: number = 2) {
     const long = new Long(broker);
     await long.Run();
   }
+}
+
+export async function RunBots() {
+  const runner = new BotRunner();
+  await runner.Run();
 }

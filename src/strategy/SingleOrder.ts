@@ -1,6 +1,5 @@
 import { BuyOrder } from "../actions/BuyOrder";
 import { SellOrder } from "../actions/SellOrder";
-import { BitmexBroker } from "../broker/BitmexBroker";
 import { IBroker } from "../broker/IBroker";
 import { OpenOrdersAmount, PercentagePositionSize, PositionRange } from "../conditions";
 import AppConfig from "../config/config";
@@ -9,7 +8,7 @@ import { Strategy } from "./Strategy";
 export class SingleOrder extends Strategy {
   private broker: IBroker;
 
-  public constructor(broker: IBroker = new BitmexBroker()) {
+  public constructor(broker: IBroker) {
     super();
 
     this.broker = broker;
