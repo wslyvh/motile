@@ -81,7 +81,9 @@ export class BitmexBroker implements IBroker {
   }
 
   public async cancelOpenOrders(): Promise<void> {
-    const result = await this.client.privateDeleteOrderAll();
+    if (AppConfig.EXECUTE_MODE) {
+      const result = await this.client.privateDeleteOrderAll();
+    }
   }
 
   public async createBuyOrder(amount: number, price: number) {
