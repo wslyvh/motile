@@ -2,7 +2,7 @@ import { IBroker } from "../broker/IBroker";
 import logger from "../utils/Logger";
 import { ICondition } from "./ICondition";
 
-export class MaxPositionSize implements ICondition {
+export class MinPositionSize implements ICondition {
   private MIN_SIZE: number;
   private broker: IBroker;
 
