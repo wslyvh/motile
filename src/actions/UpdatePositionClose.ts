@@ -21,16 +21,23 @@ export class UpdatePositionClose implements IAction {
     // Cancel Open orders
     await this.broker.cancelOpenOrders();
 
-    const price = Math.abs(position.Entry);
+    let price = Math.abs(position.Entry);
     const orderSize = Math.abs(position.Size);
     const spread = position.Entry * AppConfig.DEFAULT_SPREAD;
+    const currentPrice = await this.broker.price();
 
     if (position.Size < 0) {
       logger.info("Update Position close: " + orderSize + ". SELL @ " + (price + spread));
+      if (currentPrice > price + spread) {
+        price = currentPrice;
+      }
       await this.broker.createSellOrder(orderSize, price + spread);
     }
     if (position.Size > 0) {
       logger.info("Update Position close: " + orderSize + ". BUY @ " + (price - spread));
+      if (currentPrice < price - spread) {
+        price = currentPrice;
+      }
       await this.broker.createBuyOrder(orderSize, price - spread);
     }
 
