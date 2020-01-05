@@ -3,17 +3,13 @@ import "source-map-support/register";
 import { RunBots, RunMultipleConfigs } from "./src/multi";
 
 export const defaultFunction: APIGatewayProxyHandler = async (event, context) => {
-  // const resultMulti = await RunMultipleConfigs(2);
-  const resultBots = await RunBots();
+  // await RunMultipleConfigs(2);
+  await RunBots();
 
   return {
     statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: "Ok"
-      },
-      null,
-      2
-    )
+    body: JSON.stringify({
+      message: `Ok. Current time is ${new Date().toTimeString()}.`
+    })
   };
 };

@@ -33,3 +33,8 @@ export async function RunBots() {
   const runner = new BotRunner();
   await runner.Run();
 }
+
+export async function StatusBots() {
+  const runner = new BotRunner();
+  await runner.Status();
+}
