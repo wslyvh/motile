@@ -15,6 +15,7 @@ export class OpenOrdersRange implements ICondition {
     const orders = await this.broker.getOpenOrders();
     const price = await this.broker.price();
 
+    let outOfRange = true;
     orders.forEach(order => {
       const position = order.Price;
       const spread = price * this.RANGE;
@@ -23,10 +24,10 @@ export class OpenOrdersRange implements ICondition {
 
       if (position && position < upperBound && position > lowerBound) {
         logger.warn("Current Price within open order range: " + position + ". Stop execution.");
-        return false;
+        outOfRange = false;
       }
     });
 
-    return true;
+    return outOfRange;
   }
 }
