@@ -2,6 +2,7 @@ import { BitmexBroker } from "./broker/BitmexBroker";
 import botsConfig from "./config/botsConfig";
 import { BotType, IBot } from "./config/types";
 import { Long } from "./strategy/Long";
+import { PositionUpdate } from "./strategy/PositionUpdate";
 import { Short } from "./strategy/Short";
 import { SingleOrder } from "./strategy/SingleOrder";
 import logger from "./utils/Logger";
@@ -65,10 +66,12 @@ export class BotRunner {
         break;
       }
       case BotType.LONG: {
+        await new PositionUpdate(broker).Run();
         await new Long(broker).Run();
         break;
       }
       case BotType.SHORT: {
+        await new PositionUpdate(broker).Run();
         await new Short(broker).Run();
         break;
       }

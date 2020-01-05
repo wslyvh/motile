@@ -13,10 +13,12 @@ export class Long extends Strategy {
 
     this.broker = broker;
 
+    // CONDITIONS
     this.Conditions.push(new PercentagePositionSize(AppConfig.DEFAULT_PERCENTAGE_AT_RISK, this.broker));
     this.Conditions.push(new PositionRange(AppConfig.DEFAULT_RANGE, this.broker));
     this.Conditions.push(new OpenOrdersRange(AppConfig.DEFAULT_RANGE, this.broker));
 
+    // ACTIONS
     this.Actions.push(new UpdatePositionClose(this.broker));
     this.Actions.push(new BuyOrder(this.broker));
   }
