@@ -1,4 +1,4 @@
-import { IBalance, IBroker, IPosition } from "./IBroker";
+import { IBalance, IBroker, IOrder, IPosition } from "./IBroker";
 
 export class ExampleBroker implements IBroker {
   private PRICE = 8500;
@@ -25,6 +25,10 @@ export class ExampleBroker implements IBroker {
     };
 
     return balance;
+  }
+
+  public async getOpenOrders(): Promise<IOrder[]> {
+    return [];
   }
 
   public async openOrdersCount(): Promise<number> {

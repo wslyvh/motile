@@ -1,6 +1,6 @@
 import ccxt from "ccxt";
 import AppConfig = require("../config/config");
-import { IBalance, IBroker, IPosition } from "./IBroker";
+import { IBalance, IBroker, IOrder, IPosition } from "./IBroker";
 
 export class BitmexBroker implements IBroker {
   private client: any;
@@ -53,6 +53,19 @@ export class BitmexBroker implements IBroker {
     };
 
     return balance;
+  }
+
+  public async getOpenOrders(): Promise<IOrder[]> {
+    const openOrders = await this.client.fetchOpenOrders();
+    return openOrders.map((i: any) => {
+      return {
+        Symbol: i.info.symbol,
+        Quantity: i.amount,
+        Price: i.price,
+        Side: i.side,
+        Type: i.type
+      };
+    });
   }
 
   public async hasOpenOrders(): Promise<boolean> {
