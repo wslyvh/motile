@@ -1,9 +1,8 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
 import "source-map-support/register";
-import { RunBots, RunMultipleConfigs } from "./src/multi";
+import { RunBots } from "./src/runner";
 
 export const defaultFunction: APIGatewayProxyHandler = async (event, context) => {
-  // await RunMultipleConfigs(2);
   await RunBots();
 
   return {
