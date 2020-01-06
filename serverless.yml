@@ -17,15 +17,15 @@ provider:
   runtime: nodejs10.x
   region: eu-west-1
   environment:
-    BITMEX_KEY_0: ${param:BITMEX_KEY_0}
-    BITMEX_SECRET_0: ${param:BITMEX_SECRET_0}
-    BITMEX_KEY_1: ${param:BITMEX_KEY_1}
-    BITMEX_SECRET_1: ${param:BITMEX_SECRET_1}
     BOT_KEY_0: ${param:BOT_KEY_0}
     BOT_SECRET_0: ${param:BOT_SECRET_0}
     BOT_TYPE_0: SIMPLE
     BOT_KEY_1: ${param:BOT_KEY_1}
     BOT_SECRET_1: ${param:BOT_SECRET_1}
+    BOT_TYPE_1: LONG
+    BOT_KEY_2: ${param:BOT_KEY_2}
+    BOT_SECRET_2: ${param:BOT_SECRET_2}
+    BOT_TYPE_2: SHORT
 
 functions:
   defaultFunction:
