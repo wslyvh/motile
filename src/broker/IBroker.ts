@@ -15,6 +15,7 @@ export enum Side {
 }
 
 export interface IOrder {
+  Id: string;
   Symbol: string;
   Quantity: number;
   Price: number;
@@ -26,10 +27,11 @@ export interface IBroker {
   price(): Promise<number>;
   position(): Promise<IPosition | null>;
   balance(): Promise<IBalance>;
-  getOpenOrders(): Promise<IOrder[]>;
+  getOpenOrders(side?: "sell" | "buy"): Promise<IOrder[]>;
   hasOpenOrders(): Promise<boolean>;
   openOrdersCount(): Promise<number>;
   cancelOpenOrders(): Promise<void>;
+  cancelOrder(id: string): Promise<void>;
   createBuyOrder(amount: number, price: number): Promise<void>;
   createSellOrder(amount: number, price: number): Promise<void>;
 }

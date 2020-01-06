@@ -55,10 +55,16 @@ export class BitmexBroker implements IBroker {
     return balance;
   }
 
-  public async getOpenOrders(): Promise<IOrder[]> {
-    const openOrders = await this.client.fetchOpenOrders();
+  public async getOpenOrders(side?: "sell" | "buy"): Promise<IOrder[]> {
+    let openOrders = await this.client.fetchOpenOrders("BTC/USD");
+
+    if (side) {
+      openOrders = openOrders.filter((i: any) => i.side === side);
+    }
+
     return openOrders.map((i: any) => {
       return {
+        Id: i.id,
         Symbol: i.info.symbol,
         Quantity: i.amount,
         Price: i.price,
@@ -83,6 +89,12 @@ export class BitmexBroker implements IBroker {
   public async cancelOpenOrders(): Promise<void> {
     if (AppConfig.EXECUTE_MODE) {
       const result = await this.client.privateDeleteOrderAll();
+    }
+  }
+
+  public async cancelOrder(id: string): Promise<void> {
+    if (AppConfig.EXECUTE_MODE) {
+      const result = await this.client.cancelOrder(id);
     }
   }
 

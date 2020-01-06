@@ -27,7 +27,7 @@ export class ExampleBroker implements IBroker {
     return balance;
   }
 
-  public async getOpenOrders(): Promise<IOrder[]> {
+  public async getOpenOrders(side?: "sell" | "buy"): Promise<IOrder[]> {
     return [];
   }
 
@@ -41,6 +41,10 @@ export class ExampleBroker implements IBroker {
 
   public async cancelOpenOrders(): Promise<void> {
     // cancel orders
+  }
+
+  public async cancelOrder(id: string): Promise<void> {
+    // cancel order
   }
 
   public async createBuyOrder(amount: number, price: number) {
