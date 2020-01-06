@@ -18,11 +18,11 @@ export class BotRunner {
     for (const bot of this.Bots) {
       if (!bot.key && !bot.secret) {
         logger.error("invalid key and/or secret. SKIP");
-        return;
+        continue;
       }
       if (!bot.enabled) {
         logger.error(bot.type + " not enabled. SKIP");
-        return;
+        continue;
       }
       logger.info("Running " + bot.type);
       try {
@@ -35,10 +35,10 @@ export class BotRunner {
   }
 
   public async Status(): Promise<void> {
-    this.Bots.forEach(async bot => {
+    for (const bot of this.Bots) {
       if (!bot.key && !bot.secret) {
         logger.error("invalid key and/or secret.");
-        return;
+        continue;
       }
       const broker = new BitmexBroker(bot.key, bot.secret);
       const price = await broker.price();
@@ -54,7 +54,7 @@ export class BotRunner {
       console.log("BALANCE:", balance);
       console.log("ORDERS:", orders.length);
       console.log("-----");
-    });
+    }
   }
 
   private async runBot(bot: IBot) {
