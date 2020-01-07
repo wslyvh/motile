@@ -56,6 +56,10 @@ export class UpdatePositionClose implements IAction {
 
   private async cancelClosingOrder(side: "sell" | "buy", position: IPosition) {
     const orders = await this.broker.getOpenOrders(side);
+    if (orders.length === 0) {
+      return true;
+    }
+
     if (orders && orders.length > 0) {
       const closeOrder = orders[0];
       if (closeOrder.Quantity === position.Size || -closeOrder.Quantity === position.Size) {
