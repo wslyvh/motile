@@ -19,7 +19,6 @@ export class Long extends Strategy {
     this.Conditions.push(new OpenOrdersRange(AppConfig.DEFAULT_RANGE, this.broker));
 
     // ACTIONS
-    this.Actions.push(new UpdatePositionClose(this.broker));
     this.Actions.push(new BuyOrder(this.broker));
   }
 }

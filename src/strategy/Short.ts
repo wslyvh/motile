@@ -1,5 +1,4 @@
 import { SellOrder } from "../actions/SellOrder";
-import { UpdatePositionClose } from "../actions/UpdatePositionClose";
 import { IBroker } from "../broker/IBroker";
 import { OpenOrdersRange, PercentagePositionSize, PositionRange } from "../conditions";
 import AppConfig from "../config/config";
