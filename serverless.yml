@@ -20,7 +20,7 @@ provider:
     BOT_KEY_0: ${param:BOT_KEY_0}
     BOT_SECRET_0: ${param:BOT_SECRET_0}
     BOT_TYPE_0: SIMPLE
-    BOT_ENABLED_1: false
+    BOT_ENABLED_0: false
 
     BOT_KEY_1: ${param:BOT_KEY_1}
     BOT_SECRET_1: ${param:BOT_SECRET_1}
