@@ -1,4 +1,4 @@
-import { UpdatePositionClose } from "../actions/UpdatePositionClose";
+import { UpdatePositionClose } from "../actions";
 import { IBroker } from "../broker/IBroker";
 import { Strategy } from "./Strategy";
 
