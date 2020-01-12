@@ -63,7 +63,7 @@ export class UpdatePositionClose implements IAction {
     if (orders && orders.length > 0) {
       const closeOrder = orders[0];
       if (closeOrder.Quantity === position.Size || -closeOrder.Quantity === position.Size) {
-        console.log("NO NEED TO UPDATE");
+        // no need to update
         return false;
       }
 
