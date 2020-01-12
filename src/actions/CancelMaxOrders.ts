@@ -1,4 +1,5 @@
 import { IBroker } from "../broker/IBroker";
+import AppConfig from "../config/config";
 import logger from "../utils/Logger";
 import { IAction } from "./IAction";
 
@@ -9,7 +10,7 @@ export class CancelMaxOrders implements IAction {
 
   public constructor(broker: IBroker, side?: "sell" | "buy") {
     this.broker = broker;
-    this.maxOrders = 3;
+    this.maxOrders = AppConfig.DEFAULT_ORDER_AMOUNT;
     this.side = side;
   }
 

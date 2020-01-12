@@ -1,4 +1,4 @@
-import { SellOrder } from "../actions";
+import { CancelMaxOrders, SellOrder } from "../actions";
 import { IBroker } from "../broker/IBroker";
 import { MinBalance, OpenOrdersRange, PercentagePositionSize, PositionRange } from "../conditions";
 import AppConfig from "../config/config";
@@ -20,5 +20,6 @@ export class Short extends Strategy {
 
     // ACTIONS
     this.Actions.push(new SellOrder(this.broker));
+    this.Actions.push(new CancelMaxOrders(this.broker, "sell"));
   }
 }

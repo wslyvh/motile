@@ -19,7 +19,7 @@ const AppConfig = {
   DEFAULT_SPREAD: Number(process.env.DEFAULT_SPREAD) || 0.001, // Percentage from current price
   DEFAULT_RANGE: Number(process.env.DEFAULT_RANGE) || 0.0025, // Percentage from current price
 
-  DEFAULT_ORDER_AMOUNT: Number(process.env.DEFAULT_ORDER_AMOUNT) || 5,
+  DEFAULT_ORDER_AMOUNT: Number(process.env.DEFAULT_ORDER_AMOUNT) || 3,
   DEFAULT_OPEN_ORDERS: Number(process.env.DEFAULT_OPEN_ORDERS) || 25
 };
 
