@@ -20,8 +20,9 @@ export class CancelMaxOrders implements IAction {
     let orders = await this.broker.getOpenOrders(this.side);
     orders = orders.sort(i => i.Timestamp).reverse();
 
-    if (orders.length > this.maxOrders) {
-      const toDelete = orders.splice(0, orders.length - this.maxOrders);
+    const maxOpenOrders = this.maxOrders - 1; // zero-based
+    if (orders.length > maxOpenOrders) {
+      const toDelete = orders.splice(0, orders.length - maxOpenOrders);
       logger.info("Deleting " + toDelete.length + " order(s).");
 
       for (const order of toDelete) {
