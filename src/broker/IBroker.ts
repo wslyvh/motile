@@ -21,6 +21,7 @@ export interface IOrder {
   Price: number;
   Side: Side;
   Type: string;
+  Timestamp: number;
 }
 
 export interface IBroker {

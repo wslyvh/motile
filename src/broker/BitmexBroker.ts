@@ -69,7 +69,8 @@ export class BitmexBroker implements IBroker {
         Quantity: i.amount,
         Price: i.price,
         Side: i.side,
-        Type: i.type
+        Type: i.type,
+        Timestamp: i.timestamp
       };
     });
   }
