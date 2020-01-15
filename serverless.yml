@@ -29,6 +29,13 @@ provider:
     BOT_SECRET_2: ${param:BOT_SECRET_2}
     BOT_TYPE_2: SHORT
 
+    BOT_KEY_3: ${param:BOT_KEY_3}
+    BOT_SECRET_3: ${param:BOT_SECRET_3}
+    BOT_TYPE_3: LONG
+    BOT_KEY_4: ${param:BOT_KEY_4}
+    BOT_SECRET_4: ${param:BOT_SECRET_4}
+    BOT_TYPE_4: SHORT
+
 functions:
   defaultFunction:
     handler: handler.defaultFunction
