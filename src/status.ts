@@ -1,6 +1,7 @@
 import AppConfig = require("./config/config");
-import { RunBots } from "./runner";
+import { StatusBots } from "./runner";
 
 // tslint:disable-next-line: no-console
 console.log("Running...", AppConfig.EXECUTE_MODE);
-RunBots();
+
+StatusBots();
