@@ -1,3 +1,4 @@
+import { GetSRSI } from "./analysis/technicalAnalyser";
 import { BitmexBroker } from "./broker/BitmexBroker";
 import botsConfig from "./config/botsConfig";
 import { BotType, IBot } from "./config/types";
@@ -15,6 +16,9 @@ export class BotRunner {
   }
 
   public async Run(): Promise<void> {
+    // TA indicators
+    const srsi = await GetSRSI();
+
     for (const bot of this.Bots) {
       if (!bot.key && !bot.secret) {
         logger.error("invalid key and/or secret. SKIP");
@@ -26,7 +30,7 @@ export class BotRunner {
       }
       logger.info("Running " + bot.type);
       try {
-        await this.runBot(bot);
+        await this.runBot(bot, srsi);
       } catch (ex) {
         logger.error("Error running bot..");
         logger.error(ex);
@@ -57,7 +61,7 @@ export class BotRunner {
     }
   }
 
-  private async runBot(bot: IBot) {
+  private async runBot(bot: IBot, srsi?: number) {
     const broker = new BitmexBroker(bot.key, bot.secret);
 
     switch (bot.type) {
@@ -66,13 +70,21 @@ export class BotRunner {
         break;
       }
       case BotType.LONG: {
-        await new PositionUpdate(broker).Run();
-        await new Long(broker).Run();
+        if (srsi && srsi > 80) {
+          logger.info("SRSI overbought. Skip LONG strategy.");
+        } else {
+          await new PositionUpdate(broker).Run();
+          await new Long(broker).Run();
+        }
         break;
       }
       case BotType.SHORT: {
-        await new PositionUpdate(broker).Run();
-        await new Short(broker).Run();
+        if (srsi && srsi < 20) {
+          logger.info("SRSI overbought. Skip SHORT strategy.");
+        } else {
+          await new PositionUpdate(broker).Run();
+          await new Short(broker).Run();
+        }
         break;
       }
     }
