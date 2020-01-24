@@ -70,19 +70,21 @@ export class BotRunner {
         break;
       }
       case BotType.LONG: {
+        await new PositionUpdate(broker).Run();
+
         if (srsi && srsi > 80) {
           logger.info("SRSI overbought. Skip LONG strategy.");
         } else {
-          await new PositionUpdate(broker).Run();
           await new Long(broker).Run();
         }
         break;
       }
       case BotType.SHORT: {
+        await new PositionUpdate(broker).Run();
+
         if (srsi && srsi < 20) {
           logger.info("SRSI overbought. Skip SHORT strategy.");
         } else {
-          await new PositionUpdate(broker).Run();
           await new Short(broker).Run();
         }
         break;
