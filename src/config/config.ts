@@ -9,6 +9,10 @@ const AppConfig = {
   LOG_DIR: process.env.LOG_DIR || "logs",
   LOG_LEVEL: process.env.NODE_ENV === "production" ? "error" : "debug",
 
+  DB_CONNECTION_STRING: process.env.DB_CONNECTION_STRING || "mongodb://localhost:12701/db",
+  DB_USER: process.env.DB_USER || "",
+  DB_PASSWORD: process.env.DB_PASSWORD || "",
+
   EXECUTE_MODE: Boolean(process.env.EXECUTE_MODE) || true,
 
   // Delete defaults from AppConfig => BotConfig
