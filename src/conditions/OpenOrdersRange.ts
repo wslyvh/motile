@@ -1,5 +1,4 @@
 import { IBroker } from "../broker/IBroker";
-import logger from "../utils/Logger";
 import { ICondition } from "./ICondition";
 
 export class OpenOrdersRange implements ICondition {
@@ -23,7 +22,7 @@ export class OpenOrdersRange implements ICondition {
       const lowerBound = price - spread;
 
       if (position && position < upperBound && position > lowerBound) {
-        logger.warn("Current Price within open order range: " + position + ". Stop execution.");
+        console.log("Current Price within open order range: " + position + ". Stop execution.");
         outOfRange = false;
       }
     });

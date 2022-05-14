@@ -1,5 +1,4 @@
 import { IBroker } from "../broker/IBroker";
-import logger from "../utils/Logger";
 import { ICondition } from "./ICondition";
 
 export class MinBalance implements ICondition {
@@ -15,7 +14,7 @@ export class MinBalance implements ICondition {
     const balance = await this.broker.balance();
 
     if (balance.USD <= this.MIN_SIZE) {
-      logger.warn("No sufficient available funds. Min. required balance is " + this.MIN_SIZE + ". Stop execution.");
+      console.log("No sufficient available funds. Min. required balance is " + this.MIN_SIZE + ". Stop execution.");
       return false;
     }
 

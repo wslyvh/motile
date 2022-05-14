@@ -1,5 +1,4 @@
 import { IBroker } from "../broker/IBroker";
-import logger from "../utils/Logger";
 import { ICondition } from "./ICondition";
 
 export class MinPositionSize implements ICondition {
@@ -15,10 +14,10 @@ export class MinPositionSize implements ICondition {
     const position = await this.broker.position();
 
     if (!position) {
-      logger.warn("No position size. Stop execution.");
+      console.log("No position size. Stop execution.");
       return false;
     } else if (position.Size >= -this.MIN_SIZE || position.Size <= this.MIN_SIZE) {
-      logger.warn("Position size is " + position.Size + ". Minimum: " + this.MIN_SIZE + ". Stop execution.");
+      console.log("Position size is " + position.Size + ". Minimum: " + this.MIN_SIZE + ". Stop execution.");
       return false;
     }
 

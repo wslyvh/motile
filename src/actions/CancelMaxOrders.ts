@@ -1,6 +1,5 @@
 import { IBroker } from "../broker/IBroker";
 import AppConfig from "../config/config";
-import logger from "../utils/Logger";
 import { IAction } from "./IAction";
 
 export class CancelMaxOrders implements IAction {
@@ -15,7 +14,7 @@ export class CancelMaxOrders implements IAction {
   }
 
   public async Execute(): Promise<boolean> {
-    logger.info("Execute CancelMaxOrders..");
+    console.log("Execute CancelMaxOrders..");
 
     let orders = await this.broker.getOpenOrders(this.side);
     orders = orders.sort(i => i.Timestamp).reverse();
@@ -23,10 +22,10 @@ export class CancelMaxOrders implements IAction {
     const maxOpenOrders = this.maxOrders - 1; // zero-based
     if (orders.length > maxOpenOrders) {
       const toDelete = orders.splice(0, orders.length - maxOpenOrders);
-      logger.info("Deleting " + toDelete.length + " order(s).");
+      console.log("Deleting " + toDelete.length + " order(s).");
 
       for (const order of toDelete) {
-        logger.info("Delete " + order.Id + ".");
+        console.log("Delete " + order.Id + ".");
         await this.broker.cancelOrder(order.Id);
       }
     }

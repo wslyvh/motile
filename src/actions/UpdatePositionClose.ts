@@ -1,6 +1,5 @@
 import { IBroker, IPosition } from "../broker/IBroker";
 import AppConfig from "../config/config";
-import logger from "../utils/Logger";
 import { IAction } from "./IAction";
 
 export class UpdatePositionClose implements IAction {
@@ -11,7 +10,7 @@ export class UpdatePositionClose implements IAction {
   }
 
   public async Execute(): Promise<boolean> {
-    logger.info("Execute UpdatePositionClose..");
+    console.log("Execute UpdatePositionClose..");
 
     const position = await this.broker.position();
     if (!position) {
@@ -26,13 +25,13 @@ export class UpdatePositionClose implements IAction {
     if (position.Size < 0) {
       const result = await this.cancelClosingOrder("sell", position);
       if (result) {
-        logger.info("Update Position close: " + orderSize + ". SELL @ " + (price + spread));
+        console.log("Update Position close: " + orderSize + ". SELL @ " + (price + spread));
         if (currentPrice > price + spread) {
           price = currentPrice;
         }
         await this.broker.createSellOrder(orderSize, price + spread);
       } else {
-        logger.info("Order.Quantity and Position.Size are equal. Stop execution");
+        console.log("Order.Quantity and Position.Size are equal. Stop execution");
         return false;
       }
     }
@@ -40,13 +39,13 @@ export class UpdatePositionClose implements IAction {
     if (position.Size > 0) {
       const result = await this.cancelClosingOrder("buy", position);
       if (result) {
-        logger.info("Update Position close: " + orderSize + ". BUY @ " + (price - spread));
+        console.log("Update Position close: " + orderSize + ". BUY @ " + (price - spread));
         if (currentPrice < price - spread) {
           price = currentPrice;
         }
         await this.broker.createBuyOrder(orderSize, price - spread);
       } else {
-        logger.info("Order.Quantity and Position.Size are equal. Stop execution");
+        console.log("Order.Quantity and Position.Size are equal. Stop execution");
         return false;
       }
     }
@@ -67,7 +66,7 @@ export class UpdatePositionClose implements IAction {
         return false;
       }
 
-      logger.info("Cancelling existing closing " + side + " order");
+      console.log("Cancelling existing closing " + side + " order");
       await this.broker.cancelOrder(closeOrder.Id);
       return true;
     }

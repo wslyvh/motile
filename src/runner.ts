@@ -6,7 +6,6 @@ import { Long } from "./strategy/Long";
 import { PositionUpdate } from "./strategy/PositionUpdate";
 import { Short } from "./strategy/Short";
 import { SingleOrder } from "./strategy/SingleOrder";
-import logger from "./utils/Logger";
 
 export class BotRunner {
   public Bots: IBot[] = [];
@@ -21,19 +20,19 @@ export class BotRunner {
 
     for (const bot of this.Bots) {
       if (!bot.key && !bot.secret) {
-        logger.error("invalid key and/or secret. SKIP");
+        console.log("invalid key and/or secret. SKIP");
         continue;
       }
       if (!bot.enabled) {
-        logger.error(bot.type + " not enabled. SKIP");
+        console.log(bot.type + " not enabled. SKIP");
         continue;
       }
-      logger.info("Running " + bot.type);
+      console.log("Running " + bot.type);
       try {
         await this.runBot(bot, srsi);
       } catch (ex) {
-        logger.error("Error running bot..");
-        logger.error(ex);
+        console.log("Error running bot..");
+        console.error(ex);
       }
     }
   }
@@ -41,9 +40,10 @@ export class BotRunner {
   public async Status(): Promise<void> {
     for (const bot of this.Bots) {
       if (!bot.key && !bot.secret) {
-        logger.error("invalid key and/or secret.");
+        console.error("invalid key and/or secret.");
         continue;
       }
+      
       const broker = new BitmexBroker(bot.key, bot.secret);
       const price = await broker.price();
       const position = await broker.position();
@@ -73,7 +73,7 @@ export class BotRunner {
         await new PositionUpdate(broker).Run();
 
         if (srsi && srsi > 80) {
-          logger.info("SRSI overbought. Skip LONG strategy.");
+          console.info("SRSI overbought. Skip LONG strategy.");
         } else {
           await new Long(broker).Run();
         }
@@ -83,7 +83,7 @@ export class BotRunner {
         await new PositionUpdate(broker).Run();
 
         if (srsi && srsi < 20) {
-          logger.info("SRSI overbought. Skip SHORT strategy.");
+          console.log("SRSI overbought. Skip SHORT strategy.");
         } else {
           await new Short(broker).Run();
         }

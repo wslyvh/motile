@@ -13,7 +13,7 @@ async function getOHLC() {
   date.setDate(date.getDate() - 3);
 
   // [ timestamp, open, high, low, close, volume ]
-  ohlc = await client.fetchOHLCV("BTC/USD", "1h", date.getTime(), 168); // 168 candles // 7 days * 24h
+  ohlc = await client.fetchOHLCV("BTC/USD:BTC", "1h", date.getTime(), 168); // 168 candles // 7 days * 24h
   // console.log(ohlc);
   // console.log(ohlc.length);
 

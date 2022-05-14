@@ -1,5 +1,4 @@
 import { IBroker } from "../broker/IBroker";
-import logger from "../utils/Logger";
 import { ICondition } from "./ICondition";
 
 export class MaxPositionSize implements ICondition {
@@ -15,7 +14,7 @@ export class MaxPositionSize implements ICondition {
     const position = await this.broker.position();
 
     if (position && (position.Size <= -this.MAX_SIZE || position.Size >= this.MAX_SIZE)) {
-      logger.warn("Position size is " + position.Size + ". Max allowed: " + this.MAX_SIZE + ". Stop execution.");
+      console.log("Position size is " + position.Size + ". Max allowed: " + this.MAX_SIZE + ". Stop execution.");
       return false;
     }
 

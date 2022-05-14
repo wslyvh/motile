@@ -1,5 +1,4 @@
 import { IBroker } from "../broker/IBroker";
-import logger from "../utils/Logger";
 import { ICondition } from "./ICondition";
 
 export class PercentagePositionSize implements ICondition {
@@ -18,7 +17,7 @@ export class PercentagePositionSize implements ICondition {
       const maxPositionSize = Math.round((this.PERCENT / 100) * balance.USD);
 
       if (position.Size >= maxPositionSize) {
-        logger.warn("Position size is " + position.Size + ". Max allowed: " + maxPositionSize + " (" + this.PERCENT + "%). Stop execution.");
+        console.log("Position size is " + position.Size + ". Max allowed: " + maxPositionSize + " (" + this.PERCENT + "%). Stop execution.");
         return false;
       }
     }

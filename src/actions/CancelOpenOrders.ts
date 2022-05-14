@@ -1,5 +1,4 @@
 import { IBroker } from "../broker/IBroker";
-import logger from "../utils/Logger";
 import { IAction } from "./IAction";
 
 export class CancelOpenOrders implements IAction {
@@ -10,7 +9,7 @@ export class CancelOpenOrders implements IAction {
   }
 
   public async Execute(): Promise<boolean> {
-    logger.info("Execute CancelOpenOrders..");
+    console.log("Execute CancelOpenOrders..");
 
     await this.broker.cancelOpenOrders();
 

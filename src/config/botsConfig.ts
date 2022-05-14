@@ -4,7 +4,7 @@ import { BotType, IBot } from "./types";
 
 dotenv.config();
 
-const botsConfig: IBot[] = [getConfig(0), getConfig(1), getConfig(2), getConfig(3), getConfig(4)];
+const botsConfig: IBot[] = [getConfig(0)];
 
 function getConfig(index: number): IBot {
   return {

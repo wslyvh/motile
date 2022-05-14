@@ -1,5 +1,4 @@
 import { IBroker } from "../broker/IBroker";
-import logger from "../utils/Logger";
 import { ICondition } from "./ICondition";
 
 export class OpenOrdersAmount implements ICondition {
@@ -15,7 +14,7 @@ export class OpenOrdersAmount implements ICondition {
     const openOrders = await this.broker.openOrdersCount();
 
     if (openOrders >= this.MAX_OPEN_ORDERS) {
-      logger.warn("There are " + openOrders + " open orders. Max allowed: " + this.MAX_OPEN_ORDERS + ". Stop execution.");
+      console.log("There are " + openOrders + " open orders. Max allowed: " + this.MAX_OPEN_ORDERS + ". Stop execution.");
       return false;
     }
 

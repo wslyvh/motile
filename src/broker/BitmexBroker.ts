@@ -15,7 +15,7 @@ export class BitmexBroker implements IBroker {
   }
 
   public async price(): Promise<number> {
-    const ticker = await this.client.fetch_ticker("BTC/USD");
+    const ticker = await this.client.fetch_ticker("BTC/USD:BTC");
     return ticker.last;
   }
 
@@ -56,7 +56,7 @@ export class BitmexBroker implements IBroker {
   }
 
   public async getOpenOrders(side?: "sell" | "buy"): Promise<IOrder[]> {
-    let openOrders = await this.client.fetchOpenOrders("BTC/USD");
+    let openOrders = await this.client.fetchOpenOrders("BTC/USD:BTC");
 
     if (side) {
       openOrders = openOrders.filter((i: any) => i.side === side);
@@ -101,13 +101,13 @@ export class BitmexBroker implements IBroker {
 
   public async createBuyOrder(amount: number, price: number) {
     if (AppConfig.EXECUTE_MODE) {
-      const result = await this.client.createLimitBuyOrder("BTC/USD", Math.round(amount), Math.round(price));
+      const result = await this.client.createLimitBuyOrder("BTC/USD:BTC", Math.round(amount), Math.round(price));
     }
   }
 
   public async createSellOrder(amount: number, price: number) {
     if (AppConfig.EXECUTE_MODE) {
-      const result = await this.client.createLimitSellOrder("BTC/USD", Math.round(amount), Math.round(price));
+      const result = await this.client.createLimitSellOrder("BTC/USD:BTC", Math.round(amount), Math.round(price));
     }
   }
 }

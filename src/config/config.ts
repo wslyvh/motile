@@ -1,4 +1,5 @@
 import * as dotenv from "dotenv";
+import { DEFAULTS } from "../constants";
 
 dotenv.config();
 
@@ -15,7 +16,7 @@ const AppConfig = {
   DEFAULT_PERCENTAGE_AT_RISK: Number(process.env.DEFAULT_PERCENTAGE_AT_RISK) || 250, // Percentage of total balance / at Stake
   DEFAULT_MIN_BALANCE: Number(process.env.DEFAULT_MIN_BALANCE) || 800, // Min. required balance
   DEFAULT_RISK_LEVEL: Number(process.env.DEFAULT_RISK_LEVEL) || 0.02, // Percentage of total balance / per orderSize
-  DEFAULT_MIN_ORDERSIZE: Number(process.env.DEFAULT_MIN_ORDERSIZE) || 25, // Min. order size
+  DEFAULT_MIN_ORDERSIZE: Number(process.env.DEFAULT_MIN_ORDERSIZE) || DEFAULTS.BOT_MIN_ORDER_SIZE, // Min. order size
   DEFAULT_SPREAD: Number(process.env.DEFAULT_SPREAD) || 0.001, // Percentage from current price
   DEFAULT_RANGE: Number(process.env.DEFAULT_RANGE) || 0.0025, // Percentage from current price
 
